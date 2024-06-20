@@ -1,0 +1,4 @@
+modules/zsh/config/p10k.zsh linguist-vendored
+
+# Encrypted files
+homes/work/secrets.json filter=git-crypt diff=git-crypt
