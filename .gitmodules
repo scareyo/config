@@ -1,0 +1,3 @@
+[submodule "external/work"]
+	path = external/work
+	url = git@github.com:scareyo/config-work
