@@ -8,6 +8,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
+
+    nur.url = "github:nix-community/NUR";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, flake-parts }:
@@ -17,10 +19,17 @@
           "scarey@teseuka" = home-manager.lib.homeManagerConfiguration {
             modules = [ (./. + "/homes/scarey@teseuka") ];
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
+            extraSpecialArgs = { inherit inputs; };
+          };
+          "scarey@vegapunk" = home-manager.lib.homeManagerConfiguration {
+            modules = [ (./. + "/homes/scarey@vegapunk") ];
+            pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+            extraSpecialArgs = { inherit inputs; };
           };
           "work" = home-manager.lib.homeManagerConfiguration {
             modules = [ (./. + "/homes/work") ];
             pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+            extraSpecialArgs = { inherit inputs; };
           };
         };
       };
