@@ -17,6 +17,7 @@ in {
       email = secrets.email;
     };
 
+    fonts.enable = true;
     nvim.enable = true;
     zsh.enable = true;
   };

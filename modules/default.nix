@@ -3,6 +3,7 @@
 {
   imports = [
     ./firefox
+    ./fonts
     ./git
     ./kitty
     ./nvim
