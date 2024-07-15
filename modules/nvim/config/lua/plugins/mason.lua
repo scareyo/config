@@ -7,16 +7,16 @@ return {
     config = function()
         require("mason").setup()
         require("mason-lspconfig").setup({
-            ensure_installed = { "gopls", "omnisharp", "lua_ls", "rust_analyzer" },
+            ensure_installed = { "omnisharp", "lua_ls", "rust_analyzer" },
         })
 
         local lsp_config = require("lspconfig")
-        
+
         -- Diagnostic config
         vim.diagnostic.config({
             virtual_text = false,
         })
-        
+
         -- Show diagnostics on hover
         vim.o.updatetime = 250
         vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]]

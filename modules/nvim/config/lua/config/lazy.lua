@@ -18,4 +18,3 @@ vim.g.coq_settings = {
 }
 
 require("lazy").setup("plugins")
-
