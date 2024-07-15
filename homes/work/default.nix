@@ -8,7 +8,7 @@ in {
   ];
 
   home.username = secrets.username;
-  home.homeDirectory = "/home/${secrets.username}";
+  home.homeDirectory = "/Users/${secrets.username}";
 
   scarey.home = {
     git = {
@@ -17,7 +17,9 @@ in {
       email = secrets.email;
     };
 
+    firefox.enable = true;
     fonts.enable = true;
+    kitty.enable = true;
     nvim.enable = true;
     zsh.enable = true;
   };
