@@ -12,7 +12,7 @@
     nur.url = "github:nix-community/NUR";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, flake-parts }:
+  outputs = inputs@{ self, nixpkgs, home-manager, flake-parts, nur }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       flake = {
         homeConfigurations = {
