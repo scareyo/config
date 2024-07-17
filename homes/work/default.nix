@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 let
   secrets = lib.importJSON ./secrets.json;
@@ -9,6 +9,12 @@ in {
 
   home.username = secrets.username;
   home.homeDirectory = "/Users/${secrets.username}";
+
+  nixpkgs.config.allowUnfree = true;
+
+  home.packages = with pkgs; [
+    jetbrains.rider
+  ];
 
   scarey.home = {
     git = {
