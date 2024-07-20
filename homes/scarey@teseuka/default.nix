@@ -11,6 +11,7 @@
       enable = true;
       name = "Samuel Carey";
       email = "sam@scarey.me";
+      gpgPath = "/mnt/c/Users/scarey/scoop/apps/gpg4win/current/GnuPG/bin/gpg.exe";
     };
 
     nvim.enable = true;

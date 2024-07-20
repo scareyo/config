@@ -12,7 +12,7 @@
 
   config = {
     programs.home-manager.enable = true;
-  
+ 
     nixpkgs = {
       overlays = [
         inputs.nur.overlay

@@ -11,6 +11,11 @@
       type = types.str;
       description = "Git user.email config";
     };
+    scarey.home.git.gpgPath = mkOption {
+      type = types.str;
+      description = "Git signing.gpgPath config";
+      default = null;
+    };
   };
 
   config = lib.mkIf config.scarey.home.git.enable {
@@ -21,23 +26,11 @@
       signing = {
         key = null;
         signByDefault = true;
+        gpgPath = config.scarey.home.git.gpgPath;
       };
       extraConfig = {
         diff.tool = "nvimdiff";
       };
-    };
-  
-    programs.gpg.enable = true;
-  
-    services.gpg-agent = lib.mkIf pkgs.stdenv.isLinux {
-      enable = true;
-      enableZshIntegration = true;
-      pinentryPackage = pkgs.pinentry-gnome3;
-      
-      enableSshSupport = true;
-      sshKeys = [
-        "0A8EDEDE4953CE42F616879F6D86F997E9C181AC"
-      ];
     };
   };
 }
