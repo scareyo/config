@@ -35,6 +35,8 @@
         export HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
         export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=""
 
+        export PATH=$PATH:~/bin
+
         bindkey "$terminfo[kcuu1]" history-substring-search-up
         bindkey "$terminfo[kcud1]" history-substring-search-down
 
