@@ -4,11 +4,17 @@ default:
 init:
   nix run home-manager/master -- init --switch
 
-switch config='':
+hm config='':
   home-manager switch --flake .{{ if config != '' { "#" + config } else { "" } }}
 
-build config='':
+hm-build config='':
   home-manager build --flake .
+
+sys:
+  sudo nixos-rebuild switch --flake .
+
+sys-build:
+  sudo nixos-rebuild build --flake .
 
 unlock:
   git-crypt unlock
