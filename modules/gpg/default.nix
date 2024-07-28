@@ -7,6 +7,9 @@
 
   config = lib.mkIf config.scarey.home.gpg.enable {
     programs.gpg.enable = true;
+    programs.gpg.scdaemonSettings = {
+      disable-ccid = true;
+    };
   
     services.gpg-agent = lib.mkIf pkgs.stdenv.isLinux {
       enable = true;

@@ -12,7 +12,7 @@
       description = "Git user.email config";
     };
     scarey.home.git.gpgPath = mkOption {
-      type = types.str;
+      type = types.nullOr types.str;
       description = "Git signing.gpgPath config";
       default = null;
     };
@@ -26,7 +26,7 @@
       signing = {
         key = null;
         signByDefault = true;
-        gpgPath = config.scarey.home.git.gpgPath;
+        gpgPath = lib.mkIf (config.scarey.home.git.gpgPath != null) config.scarey.home.git.gpgPath;
       };
       extraConfig = {
         diff.tool = "nvimdiff";

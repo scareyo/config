@@ -5,6 +5,7 @@
     ./firefox
     ./fonts
     ./git
+    ./gpg
     ./kitty
     ./nvim
     ./zsh
@@ -15,6 +16,7 @@
  
     nixpkgs = {
       overlays = [
+        inputs.nixgl.overlay
         inputs.nur.overlay
       ];
     };
