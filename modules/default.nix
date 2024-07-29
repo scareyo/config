@@ -5,6 +5,7 @@
     ./firefox
     ./fonts
     ./git
+    ./gnome
     ./gpg
     ./kitty
     ./nvim

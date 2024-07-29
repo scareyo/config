@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -8,11 +8,28 @@
   home.username = "scarey";
   home.homeDirectory = "/home/scarey";
 
+  nixpkgs.config.allowUnfree = true;
+
+  home.packages = with pkgs; [
+    vesktop
+  ];
+
   scarey.home = {
     git = {
       enable = true;
       name = "Samuel Carey";
       email = "sam@scarey.me";
+    };
+
+    gnome = {
+      enable = true;
+      pinned = [
+        "org.gnome.Nautilus.desktop"
+        "firefox.desktop"
+        "kitty.desktop"
+        "vesktop.desktop"
+        "steam.desktop"
+      ];
     };
 
     firefox.enable = true;
