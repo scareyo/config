@@ -14,8 +14,22 @@
     home.packages = with pkgs; [
       gnome-tweaks
     ];
+    
+    programs.gnome-shell = {
+      enable = true;
+      extensions = with pkgs; [
+        { package = gnomeExtensions.dash-to-dock; }
+        { package = gnomeExtensions.nothing-to-say; }
+      ];
+    };
 
     dconf.settings = {
+      "org/gnome/desktop/wm/keybindings" = {
+        switch-applications = [];
+        switch-applications-backward = [];
+        switch-windows = [ "<Alt>Tab" ];
+        switch-windows-backward = [ "<Shift><Alt>Tab" ];
+      };
       "org/gnome/desktop/wm/preferences" = {
         button-layout = "appmenu:minimize,maximize,close";
       };
