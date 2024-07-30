@@ -18,6 +18,7 @@
     nixpkgs = {
       overlays = [
         inputs.nur.overlay
+        (final: prev: import ../pkgs final.pkgs)
       ];
     };
 
