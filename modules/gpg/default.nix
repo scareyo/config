@@ -22,6 +22,10 @@ in
       ];
     };
 
+    programs.zsh.initExtra = lib.mkIf config.scarey.home.zsh.enable ''
+      export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+    '';
+
     services.gpg-agent = lib.mkIf pkgs.stdenv.isLinux {
       enable = true;
       enableZshIntegration = true;
