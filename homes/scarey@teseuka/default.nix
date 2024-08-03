@@ -11,6 +11,7 @@
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
+    lutris
     vesktop
   ];
 
@@ -39,6 +40,8 @@
     nvim.enable = true;
     zsh.enable = true;
   };
+
+  programs.mangohud.enable = true;
 
   home.stateVersion = "24.05";
 }

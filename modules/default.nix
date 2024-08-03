@@ -25,6 +25,7 @@
     home.packages = with pkgs; [
       fastfetch
       just
+      nix-search-cli
     ];
 
     home.activation = lib.mkIf pkgs.stdenv.isDarwin {
