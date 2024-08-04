@@ -1,0 +1,14 @@
+name: Check
+on:
+  pull_request:
+  push:
+jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+  
+      - name: Check flake inputs
+        uses: DeterminateSystems/flake-checker-action@v8
