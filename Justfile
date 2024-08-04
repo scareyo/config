@@ -8,13 +8,13 @@ hm config='':
   home-manager switch --flake .{{ if config != '' { "#" + config } else { "" } }}
 
 hm-build config='':
-  home-manager build --flake .
+  home-manager build --flake .{{ if config != '' { "#" + config } else { "" } }}
 
-sys:
-  sudo nixos-rebuild switch --flake .
+sys config='':
+  sudo nixos-rebuild switch --flake .{{ if config != '' { "#" + config } else { "" } }}
 
-sys-build:
-  sudo nixos-rebuild build --flake .
+sys-build config='':
+  nixos-rebuild build --flake .{{ if config != '' { "#" + config } else { "" } }}
 
 unlock:
   git-crypt unlock

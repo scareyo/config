@@ -1,6 +1,6 @@
 # config
 
-These are my personal dotfiles managed by home-manager
+These are my personal dotfiles and system configurations
 
 ## Setup
 
@@ -22,8 +22,18 @@ just init
 just unlock
 ```
 
-4. Switch to the desired home configuration
+### System
+
+Switch to the desired system configuration
 
 ```
-just switch [config]
+just sys [config]
+```
+
+### Home
+
+Switch to the desired home configuration
+
+```
+just hm [config]
 ```
