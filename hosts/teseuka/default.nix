@@ -12,7 +12,7 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  system.configurationRevision = toString (self.shortRev or self.dirtyShortRev or self.lastModified or "unknown");
+  system.configurationRevision = toString (self.shortRev or self.rev or self.dirtyShortRev or self.lastModified or "unknown");
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
