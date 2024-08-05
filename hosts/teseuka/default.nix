@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, lib, pkgs, self, ... }:
 
 {
   imports =
@@ -12,11 +12,20 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  system.configurationRevision = toString (self.shortRev or self.dirtyShortRev or self.lastModified or "unknown");
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "teseuka"; # Define your hostname.
+
+  # Auto upgrade
+  system.autoUpgrade = {
+    enable = true;
+    flake = "github:scareyo/config";
+    dates = "01:24 UTC";
+  };
 
   # Enable networking
   networking.networkmanager.enable = true;
