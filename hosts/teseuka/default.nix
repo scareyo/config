@@ -24,7 +24,7 @@
   system.autoUpgrade = {
     enable = true;
     flake = "github:scareyo/config";
-    dates = "01:24 UTC";
+    dates = "07:00 UTC";
   };
 
   # Enable networking
