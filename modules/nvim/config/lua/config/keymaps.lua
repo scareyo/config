@@ -16,7 +16,13 @@ vim.keymap.set('n', '<leader>q', function()
     vim.api.nvim_command('bd ' .. target_buffer)
 end)
 
+-- NvimTree
 vim.keymap.set('n', "<leader><TAB>", function() vim.api.nvim_command("NvimTreeToggle") end)
+vim.keymap.set('n', "<leader>h", function() require("nvim-tree.api").tree.toggle_gitignore_filter() end)
+
+-- Telescope
 vim.keymap.set('n', "<leader>t", function() vim.api.nvim_command("Telescope") end)
+
+-- Dap
 vim.keymap.set('n', "<leader>b", function() vim.api.nvim_command("DapToggleBreakpoint") end)
 vim.keymap.set('n', "<leader>d", function() vim.api.nvim_command("DapUiToggle") end)
