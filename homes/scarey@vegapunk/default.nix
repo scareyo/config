@@ -14,6 +14,10 @@
     discord
     yubikey-manager
   ];
+      
+  programs.zsh.sessionVariables = {
+    PATH = "$PATH:/opt/homebrew/bin";
+  };
 
   scarey.home = {
     git = {
