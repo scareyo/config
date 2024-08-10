@@ -22,6 +22,9 @@ vim.keymap.set('n', "<leader>h", function() require("nvim-tree.api").tree.toggle
 
 -- Telescope
 vim.keymap.set('n', "<leader>t", function() vim.api.nvim_command("Telescope") end)
+vim.keymap.set('n', "<leader>f", function() vim.api.nvim_command("Telescope live_grep") end)
+vim.keymap.set('n', "<leader>s", function() vim.api.nvim_command("Telescope git_status") end)
+vim.keymap.set('n', "<leader>l", function() vim.api.nvim_command("Telescope git_commits") end)
 
 -- Dap
 vim.keymap.set('n', "<leader>b", function() vim.api.nvim_command("DapToggleBreakpoint") end)
