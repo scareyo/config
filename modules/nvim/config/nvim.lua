@@ -11,8 +11,8 @@ vim.opt.mouse = "a"
 vim.opt.mousemoveevent = true
 vim.opt.number = true
 vim.opt.termguicolors = true
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 
@@ -38,8 +38,15 @@ vim.keymap.set('n', '<leader>q', function()
   vim.api.nvim_command('bd ' .. target_buffer)
 end)
 
+-- Dap
+vim.keymap.set('n', "<leader>b", function() vim.api.nvim_command("DapToggleBreakpoint") end)
+vim.keymap.set('n', "<leader>d", function() vim.api.nvim_command("DapUiToggle") end)
+
+-- LazyGit
+vim.keymap.set('n', "<leader>g", function() vim.api.nvim_command("LazyGit") end)
+
 -- NvimTree
-vim.keymap.set('n', "<leader><TAB>", function() vim.api.nvim_command("NvimTreeToggle") end)
+vim.keymap.set('n', "<leader><TAB>", function() vim.api.nvim_command("ScareyTreeToggle") end)
 vim.keymap.set('n', "<leader>h", function() require("nvim-tree.api").tree.toggle_gitignore_filter() end)
 
 -- Telescope
@@ -48,16 +55,15 @@ vim.keymap.set('n', "<leader>f", function() vim.api.nvim_command("Telescope live
 vim.keymap.set('n', "<leader>s", function() vim.api.nvim_command("Telescope git_status") end)
 vim.keymap.set('n', "<leader>l", function() vim.api.nvim_command("Telescope git_commits") end)
 
--- Dap
-vim.keymap.set('n', "<leader>b", function() vim.api.nvim_command("DapToggleBreakpoint") end)
-vim.keymap.set('n', "<leader>d", function() vim.api.nvim_command("DapUiToggle") end)
-
 
 --------------------------------------------------------------------------------
 --- Autocmds
 --------------------------------------------------------------------------------
 vim.api.nvim_create_autocmd("VimEnter", {
-  command = "silent !kitty @ set-spacing padding=0"
+  callback = function()
+    vim.api.nvim_command("silent !kitty @ set-spacing padding=0")
+    vim.api.nvim_command("ScareyTreeOpen")
+  end,
 })
 
 vim.api.nvim_create_autocmd("VimLeave", {
@@ -65,20 +71,6 @@ vim.api.nvim_create_autocmd("VimLeave", {
     -- Only when exiting to kitty
     if (os.getenv("TERM") == "xterm-kitty") then
       vim.api.nvim_command("silent !kitty @ set-spacing padding=10 padding-top=0")
-    end
-  end,
-})
-
-vim.api.nvim_create_autocmd("BufEnter", {
-  callback = function()
-    -- Language specific options
-    if (vim.bo.filetype == "dart") then
-      vim.opt.shiftwidth = 2
-      vim.opt.softtabstop = 2
-    end
-    if (vim.bo.filetype == "nix") then
-      vim.opt.shiftwidth = 2
-      vim.opt.softtabstop = 2
     end
   end,
 })
