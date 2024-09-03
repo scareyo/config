@@ -9,10 +9,13 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+
     nur.url = "github:nix-community/NUR";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, flake-parts, nur }:
+  outputs = inputs@{ self, nixpkgs, home-manager, flake-parts, nixvim, nur }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       flake = {
         homeConfigurations = {
