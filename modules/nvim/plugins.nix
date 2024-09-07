@@ -32,7 +32,7 @@
   lsp = {
     enable = true;
     servers = {
-      omnisharp.enable = true;
+      ccls.enable = true;
       gopls.enable = true;
       lua-ls = {
         enable = true;
@@ -41,6 +41,7 @@
         ];
       };
       nil-ls.enable = true;
+      omnisharp.enable = true;
       rust-analyzer = {
         enable = true;
         installRustc = true;
