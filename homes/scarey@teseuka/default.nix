@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -12,6 +12,7 @@
 
   home.packages = with pkgs; [
     lutris
+    obsidian
     openmw
     vesktop
   ];
