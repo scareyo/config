@@ -47,6 +47,23 @@ in
       opts = import ./options.nix;
       plugins = import ./plugins.nix;
 
+      userCommands = {
+        TabClose = {
+          command.__raw = ''
+            function()
+              if (vim.bo.modified) then
+                print("There are unsaved changes")
+                return
+              end
+
+              local target_buffer = vim.api.nvim_get_current_buf()
+              vim.api.nvim_command('bprev')
+              vim.api.nvim_command('bd! ' .. target_buffer)
+            end
+          '';
+        };
+      };
+
       globals = lib.mkIf cfg.neovide.enable {
         neovide_transparency = 0.95;
       };

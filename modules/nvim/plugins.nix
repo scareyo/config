@@ -3,6 +3,7 @@
     enable = true;
     settings = {
       options = {
+        close_command = "TabClose";
         offsets = [
           {
             filetype = "NvimTree";
