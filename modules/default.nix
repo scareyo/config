@@ -9,6 +9,7 @@
     ./gpg
     ./kitty
     ./nvim
+    ./zed
     ./zsh
   ];
 
