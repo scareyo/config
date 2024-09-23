@@ -6,6 +6,14 @@
   };
   
   config = lib.mkIf config.scarey.home.firefox.enable {
+
+    launchd.agents."me.scarey.config" = {
+      enable = true;
+      config = {
+        ProgramArguments = [ "launchctl" "setenv" "MOZ_LEGACY_PROFILES" "1" ];
+      };
+    };
+
     programs.firefox = {
       enable = true;
       package = lib.mkIf pkgs.stdenv.isDarwin null;
