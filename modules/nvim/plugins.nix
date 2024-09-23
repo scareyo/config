@@ -53,14 +53,16 @@
 
   lualine = {
     enable = true;
-    ignoreFocus = [
+    settings.options.ignore_focus = [
       "NvimTree"
     ];
   };
 
   mini = {
     enable = true;
+    mockDevIcons = true;
     modules = {
+      icons = {};
       sessions = {
         autoread = true;
         hooks.post.read.__raw = ''
