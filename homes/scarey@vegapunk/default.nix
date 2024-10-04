@@ -27,6 +27,7 @@
     };
 
     firefox.enable = true;
+    fonts.enable = true;
     gpg.enable = true;
     kitty.enable = true;
     nvim.enable = true;
