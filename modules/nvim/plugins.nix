@@ -35,15 +35,15 @@
     servers = {
       ccls.enable = true;
       gopls.enable = true;
-      lua-ls = {
+      lua_ls = {
         enable = true;
         settings.diagnostics.globals = [
           "vim"
         ];
       };
-      nil-ls.enable = true;
+      nil_ls.enable = true;
       omnisharp.enable = true;
-      rust-analyzer = {
+      rust_analyzer = {
         enable = true;
         installRustc = true;
         installCargo = true;
