@@ -11,6 +11,7 @@
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
+    alvr
     lutris
     obsidian
     openmw
