@@ -15,6 +15,7 @@
     lutris
     obsidian
     openmw
+    prismlauncher
     vesktop
   ];
 
