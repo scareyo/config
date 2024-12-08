@@ -33,7 +33,8 @@
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [
-      80  # HTTP
+      80    # HTTP
+      8080  # HTTP
     ];
     allowedUDPPorts = [
       67  # DHCP

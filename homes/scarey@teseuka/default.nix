@@ -40,6 +40,7 @@
     firefox.enable = true;
     fonts.enable = true;
     gpg.enable = true;
+    gpg.ssh.enable = true;
     kitty.enable = true;
 
     nvim = {
