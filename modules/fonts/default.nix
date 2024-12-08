@@ -11,7 +11,7 @@
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-emoji
-      (nerdfonts.override { fonts = [ "Meslo" ]; })
+      nerd-fonts.meslo-lg
     ];
   };
 }
