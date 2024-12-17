@@ -49,9 +49,17 @@ in {
       email = secrets.email;
     };
 
+    gpg = {
+      enable = true;
+      ssh = {
+        enable = true;
+        pinentry = pkgs.pinentry_mac;
+        keys = [ "DDE0EEB6DE49F3E9405A1A7645DC79E77A2B9645" ];
+      };
+    };
+
     firefox.enable = true;
     fonts.enable = true;
-    gpg.enable = true;
     kitty.enable = true;
     nvim.enable = true;
     zsh.enable = true;

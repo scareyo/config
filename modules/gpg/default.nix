@@ -12,6 +12,17 @@ in
   options = with lib; {
     scarey.home.gpg.enable = mkEnableOption "Enable GnuPG configuration";
     scarey.home.gpg.ssh.enable = mkEnableOption "Enable GnuPG SSH authentication";
+    scarey.home.gpg.ssh.pinentry = mkOption {
+        type = types.package;
+        example = literalExpression "pkgs.pinentry-gnome3";
+        default = pkgs.pinentry-gnome3;
+        description = "Pin entry package to use";
+    };
+    scarey.home.gpg.ssh.keys = mkOption {
+      type = types.listOf types.str;
+      default = [ "0A8EDEDE4953CE42F616879F6D86F997E9C181AC" ];
+      description = "List of SSH keys to add to gpg-agent";
+    };
   };
 
   config = lib.mkIf cfg.gpg.enable {
@@ -29,15 +40,13 @@ in
       export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
     '';
 
-    services.gpg-agent = lib.mkIf pkgs.stdenv.isLinux {
+    services.gpg-agent = {
       enable = true;
       enableZshIntegration = true;
-      pinentryPackage = pkgs.pinentry-gnome3;
+      pinentryPackage = cfg.gpg.ssh.pinentry;
       
       enableSshSupport = true;
-      sshKeys = [
-        "0A8EDEDE4953CE42F616879F6D86F997E9C181AC"
-      ];
+      sshKeys = cfg.gpg.ssh.keys;
     };
   };
 }

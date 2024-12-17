@@ -30,7 +30,7 @@
       };
 
       initExtra = ''
-        source ${ ./config/p10k.zsh }
+        source ${ ./config/p10k_v2.zsh }
         export KEYTIMEOUT=1
         export HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
         export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=""
