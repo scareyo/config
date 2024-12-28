@@ -9,13 +9,15 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    ghostty.url = "github:ghostty-org/ghostty";
+
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
 
     nur.url = "github:nix-community/NUR";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, flake-parts, nixvim, nur }:
+  outputs = inputs@{ self, nixpkgs, home-manager, flake-parts, ghostty, nixvim, nur }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       flake = {
         homeConfigurations = {
@@ -47,7 +49,7 @@
         "aarch64-darwin"
       ];
 
-      perSystem = { config, pkgs, ... }: {
+      perSystem = { pkgs, ... }: {
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             git-crypt

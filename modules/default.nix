@@ -5,6 +5,7 @@
     ./firefox
     ./fonts
     ./git
+    ./ghostty
     ./gnome
     ./gpg
     ./kitty
