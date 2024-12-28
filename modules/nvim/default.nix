@@ -8,7 +8,7 @@ in
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
 
-    ./plugins/just.nix
+    #./plugins/just.nix
   ];
 
   options = with lib; {
