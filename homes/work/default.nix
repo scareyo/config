@@ -30,6 +30,7 @@ in {
     awscli2
     jetbrains.rider
     localstack
+    postman
     powershell
     rectangle
     vscode
