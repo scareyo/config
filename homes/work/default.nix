@@ -30,10 +30,6 @@ in {
     ])
   ];
 
-  programs.zsh.sessionVariables = {
-    DOTNET_ROOT = "${pkgs.dotnetCorePackages.sdk_8_0}";
-  };
-
   scarey.home = {
     git = {
       enable = true;
