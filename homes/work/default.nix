@@ -7,17 +7,6 @@ in {
     ../../modules
   ];
   
-  # FIXME: https://nixpk.gs/pr-tracker.html?pr=338033
-  #nixpkgs.config.packageOverrides = pkgs: {
-  #  kitty = pkgs.kitty.overrideAttrs (old: {
-  #    preBuild = ''
-  #      # Add the font by hand because fontconfig does not finds it in darwin
-  #      mkdir ./fonts/
-  #      cp "${(pkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})}/share/fonts/truetype/NerdFonts/SymbolsNerdFontMono-Regular.ttf" ./fonts/
-  #    '';
-  #  });
-  #};
-
   home.username = secrets.username;
   home.homeDirectory = "/Users/${secrets.username}";
 
