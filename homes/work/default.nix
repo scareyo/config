@@ -22,6 +22,9 @@ in {
   home.homeDirectory = "/Users/${secrets.username}";
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "dotnet-sdk-7.0.410"
+  ];
 
   home.packages = with pkgs; [
     awscli2
