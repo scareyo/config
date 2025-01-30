@@ -35,6 +35,6 @@ jobs:
             automated
 
       - name: Merge PR
-        run: "gh pr merge --auto --squash --delete-branch ${{ steps.update.outputs.pull-request-number }}"
+        run: "gh pr merge --squash --delete-branch ${{ steps.update.outputs.pull-request-number }}"
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
