@@ -21,10 +21,22 @@
     };
   };
 
-  coq-nvim = {
+  cmp = {
     enable = true;
     settings = {
-      auto_start = true;
+      sources = [
+        { name = "nvim_lsp"; }
+        { name = "path"; }
+        { name = "buffer"; }
+      ];
+      mapping = {
+        "<Esc>" = "cmp.mapping.close()";
+        "<CR>" = "cmp.mapping.confirm({ select = true })";
+        "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+        "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+        "<Up>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+        "<Down>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+      };
     };
   };
 
