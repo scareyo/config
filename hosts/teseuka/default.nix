@@ -101,7 +101,7 @@
     isNormalUser = true;
     description = "Samuel Carey";
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "dialout" ];
   };
 
   # Allow unfree packages
