@@ -14,6 +14,7 @@
     alvr
     lutris
     obsidian
+    osu-lazer-bin
     prismlauncher
     vesktop
   ];
