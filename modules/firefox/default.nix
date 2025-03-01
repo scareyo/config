@@ -20,7 +20,7 @@
       profiles.scarey = {
         isDefault = true;
         bookmarks = {};
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
           bitwarden
           multi-account-containers
           ublock-origin
