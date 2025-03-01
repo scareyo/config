@@ -31,7 +31,7 @@
       pinned = [
         "org.gnome.Nautilus.desktop"
         "firefox.desktop"
-        "kitty.desktop"
+        "com.mitchellh.ghostty.desktop"
         "vesktop.desktop"
         "steam.desktop"
       ];
