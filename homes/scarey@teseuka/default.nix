@@ -12,11 +12,14 @@
 
   home.packages = with pkgs; [
     alvr
+    discord-canary
     lutris
     obsidian
+    openscad
     osu-lazer-bin
     prismlauncher
     vesktop
+    webcord
   ];
 
   scarey.home = {
