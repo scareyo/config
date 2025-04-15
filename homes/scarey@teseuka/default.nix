@@ -46,6 +46,7 @@
     gpg.enable = true;
     gpg.ssh.enable = true;
     kitty.enable = true;
+    librewolf.enable = true;
 
     nvim = {
       enable = true;

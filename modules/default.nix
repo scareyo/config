@@ -1,4 +1,4 @@
-{ config, inputs, lib, pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
@@ -9,6 +9,7 @@
     ./gnome
     ./gpg
     ./kitty
+    ./librewolf
     ./nvim
     ./zed
     ./zsh
