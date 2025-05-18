@@ -29,7 +29,7 @@
         ll = "ls -l";
       };
 
-      initExtra = ''
+      initContent = ''
         source ${ ./config/p10k_v2.zsh }
         export KEYTIMEOUT=1
         export HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1

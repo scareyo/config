@@ -68,7 +68,7 @@ in
         neovide_transparency = 0.95;
       };
 
-      diagnostics = {
+      diagnostic.settings = {
         virtual_text = false;
       };
 

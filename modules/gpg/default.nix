@@ -36,14 +36,14 @@ in
       ];
     };
 
-    programs.zsh.initExtra = lib.mkIf (cfg.gpg.ssh.enable && cfg.zsh.enable) ''
+    programs.zsh.initContent = lib.mkIf (cfg.gpg.ssh.enable && cfg.zsh.enable) ''
       export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
     '';
 
     services.gpg-agent = {
       enable = true;
       enableZshIntegration = true;
-      pinentryPackage = cfg.gpg.ssh.pinentry;
+      pinentry.package = cfg.gpg.ssh.pinentry;
       
       enableSshSupport = true;
       sshKeys = cfg.gpg.ssh.keys;
