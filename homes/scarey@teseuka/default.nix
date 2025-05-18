@@ -9,6 +9,9 @@
   home.homeDirectory = "/home/scarey";
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "dotnet-runtime-7.0.20"
+  ];
 
   home.packages = with pkgs; [
     alvr
@@ -19,6 +22,7 @@
     osu-lazer-bin
     prismlauncher
     vesktop
+    vintagestory
     webcord
   ];
 
