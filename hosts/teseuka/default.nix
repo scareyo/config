@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, lib, pkgs, self, ... }:
+{ inputs, pkgs, self, ... }:
 
 {
   imports =
@@ -13,6 +13,8 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   system.configurationRevision = toString (self.shortRev or self.dirtyShortRev or "unknown");
+
+  virtualisation.libvirtd.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -41,11 +43,17 @@
     allowedTCPPorts = [
       80    # HTTP
       8080  # HTTP
+      47984 # Wolf (HTTPS)
+      47989 # Wolf (HTTP)
+      48010 # Wolf (RTSP)
     ];
     allowedUDPPorts = [
       67    # DHCP
       69    # TFTP
       4011  # DHCP
+      47999 # Wolf (Control)
+      48100 # Wolf (Video)
+      48200 # Wolf (Audio)
     ];
   };
 
@@ -103,6 +111,42 @@
     pulse.enable = true;
   };
 
+  services.flatpak.enable = true;
+
+  # Games On Whales
+  virtualisation = {
+    containers.enable = true;
+    docker.enable = true;
+
+    oci-containers.backend = "docker";
+
+    oci-containers.containers = {
+      wolf = {
+        image = "ghcr.io/games-on-whales/wolf:stable";
+        environment = {
+          XDG_RUNTIME_DIR = "/tmp/sockets";
+          HOST_APPS_STATE_FOLDER = "/etc/wolf";
+        };
+        volumes = [
+          "/etc/wolf/:/etc/wolf"
+          "/tmp/sockets:/tmp/sockets:rw"
+          "/var/run/docker.sock:/var/run/docker.sock:rw"
+          "/dev/:/dev/:rw"
+          "/run/udev:/run/udev:rw"
+        ];
+        extraOptions = [
+          "--device-cgroup-rule" "c 13:* rmw"
+        ];
+        devices = [
+          "/dev/dri"
+          "/dev/uinput"
+          "/dev/uhid"
+        ];
+        networks = [ "host" ];
+      };
+    };
+  };
+
   programs.zsh.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -110,26 +154,27 @@
     isNormalUser = true;
     description = "Samuel Carey";
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" "dialout" ];
+    extraGroups = [ "networkmanager" "wheel" "dialout" "docker" ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  nixpkgs = {
+    overlays = [
+      (final: prev: import ../../pkgs final.pkgs)
+    ];
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     usbutils
     vim
+    docker-compose  
   ];
 
   programs.steam.enable = true;
-
-  # Podman
-  virtualisation = {
-    containers.enable = true;
-    podman.enable = true;
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
