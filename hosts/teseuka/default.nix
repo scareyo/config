@@ -20,6 +20,12 @@
 
   networking.hostName = "teseuka"; # Define your hostname.
 
+  # Drives
+  fileSystems."/data" = {
+    device = "/dev/disk/by-uuid/b80e74f3-c6ac-4468-982b-c874f133e1fa";
+    fsType = "btrfs";
+  };
+
   # Auto upgrade
   system.autoUpgrade = {
     enable = true;
