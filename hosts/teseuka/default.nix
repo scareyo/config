@@ -46,6 +46,7 @@
       47984 # Wolf (HTTPS)
       47989 # Wolf (HTTP)
       48010 # Wolf (RTSP)
+      50042 # Omni (HTTP)
     ];
     allowedUDPPorts = [
       67    # DHCP
