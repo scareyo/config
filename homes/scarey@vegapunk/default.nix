@@ -26,10 +26,16 @@
       email = "sam@scarey.me";
     };
 
+    gpg = {
+      enable = true;
+      ssh = {
+        enable = true;
+        pinentry = pkgs.pinentry_mac;
+      };
+    };
+
     firefox.enable = true;
     fonts.enable = true;
-    gpg.enable = true;
-    kitty.enable = true;
     nvim.enable = true;
     zsh.enable = true;
   };
