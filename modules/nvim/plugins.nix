@@ -89,11 +89,11 @@
 
   nvim-tree = {
     enable = true;
-    git = {
-      ignore = false;
+    settings = {
+      git.ignore = false;
+      update_focused_file.enable = true;
+      view.width = 40;
     };
-    updateFocusedFile.enable = true;
-    view.width = 40;
   };
 
   telescope.enable = true;
