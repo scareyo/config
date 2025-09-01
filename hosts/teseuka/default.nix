@@ -114,6 +114,11 @@
 
   services.flatpak.enable = true;
 
+  services.ollama.enable = true;
+  services.ollama.acceleration = "rocm";
+
+  services.meshcentral.enable = true;
+
   # Games On Whales
   virtualisation = {
     containers.enable = true;
