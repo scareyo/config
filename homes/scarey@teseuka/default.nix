@@ -14,8 +14,8 @@
   ];
 
   home.packages = with pkgs; [
-    alvr
-    discord-canary
+    kubectl
+    kubelogin-oidc
     lutris
     obsidian
     openscad
@@ -23,7 +23,6 @@
     prismlauncher
     vesktop
     vintagestory
-    webcord
   ];
 
   scarey.home = {
