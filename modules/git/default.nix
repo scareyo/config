@@ -21,14 +21,14 @@
   config = lib.mkIf config.scarey.home.git.enable {
     programs.git = {
       enable = true;
-      userName = config.scarey.home.git.name;
-      userEmail = config.scarey.home.git.email;
       signing = {
         key = null;
         signByDefault = true;
         gpgPath = lib.mkIf (config.scarey.home.git.gpgPath != null) config.scarey.home.git.gpgPath;
       };
-      extraConfig = {
+      settings = {
+        user.name = config.scarey.home.git.name;
+        user.email = config.scarey.home.git.email;
         diff.tool = "nvimdiff";
       };
     };
