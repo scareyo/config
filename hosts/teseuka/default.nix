@@ -181,6 +181,11 @@
   ];
 
   programs.steam.enable = true;
+  
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
