@@ -21,8 +21,10 @@
     openscad
     osu-lazer-bin
     prismlauncher
+    runelite
     vesktop
     vintagestory
+    vlc
   ];
 
   scarey.home = {
