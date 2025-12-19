@@ -16,9 +16,16 @@
 
   virtualisation.libvirtd.enable = true;
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # Boot
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+
+    initrd.kernelModules = [ "amdgpu" ];
+    
+    kernelPackages = pkgs.linuxPackages_latest;
+  };
+
 
   networking.hostName = "teseuka"; # Define your hostname.
 
@@ -82,8 +89,6 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
-
-  boot.initrd.kernelModules = [ "amdgpu" ];
 
   hardware.graphics = {
     enable = true;
