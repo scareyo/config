@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, pkgs, self, ... }:
+{ pkgs, self, ... }:
 
 {
   imports =
@@ -122,7 +122,7 @@
   services.flatpak.enable = true;
 
   services.ollama.enable = true;
-  services.ollama.acceleration = "rocm";
+  services.ollama.package = pkgs.ollama-rocm;
 
   services.meshcentral.enable = true;
 
