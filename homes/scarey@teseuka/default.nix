@@ -28,6 +28,12 @@
   ];
 
   scarey.home = {
+    auto-upgrade = {
+      enable = true;
+      flake = "github:scareyo/config";
+      dates = "07:30 UTC";
+    };
+
     git = {
       enable = true;
       name = "Samuel Carey";

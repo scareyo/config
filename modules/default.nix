@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./auto-upgrade
     ./firefox
     ./fonts
     ./git
