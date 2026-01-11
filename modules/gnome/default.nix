@@ -12,7 +12,9 @@
   
   config = lib.mkIf config.scarey.home.gnome.enable {
     home.packages = with pkgs; [
+      firefox-gnome-theme
       gnome-tweaks
+      rewaita
     ];
     
     programs.gnome-shell = {
@@ -20,6 +22,7 @@
       extensions = with pkgs; [
         { package = gnomeExtensions.dash-to-dock; }
         { package = gnomeExtensions.nothing-to-say; }
+        { package = gnomeExtensions.user-themes; }
       ];
     };
 
@@ -38,6 +41,9 @@
       };
       "org/gnome/shell" = lib.mkIf ((builtins.length config.scarey.home.gnome.pinned) > 0) {
         favorite-apps = config.scarey.home.gnome.pinned;
+      };
+      "org/gnome/shell/extensions/user-theme" = {
+        name = "rewaita";
       };
     };
   };

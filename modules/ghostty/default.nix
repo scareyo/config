@@ -9,5 +9,11 @@
     home.packages = [
       inputs.ghostty.packages.${pkgs.stdenv.system}.default
     ];
+
+    xdg.configFile."ghostty/config.ghostty" = {
+      text = ''
+        theme = TokyoNight
+      '';
+    };
   };
 }

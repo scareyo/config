@@ -40,7 +40,7 @@ in
     programs.nixvim = {
       enable = true;
 
-      colorschemes.catppuccin.enable = true;
+      colorschemes.tokyonight.enable = true;
 
       autoCmd = import ./autocmds.nix;
       keymaps = import ./keymaps.nix;
