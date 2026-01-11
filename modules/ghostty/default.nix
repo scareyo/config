@@ -13,6 +13,7 @@
     xdg.configFile."ghostty/config.ghostty" = {
       text = ''
         theme = TokyoNight
+        font-family = "Lilex Nerd Font"
       '';
     };
   };
