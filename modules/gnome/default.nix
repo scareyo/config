@@ -12,7 +12,6 @@
   
   config = lib.mkIf config.scarey.home.gnome.enable {
     home.packages = with pkgs; [
-      firefox-gnome-theme
       gnome-tweaks
       rewaita
     ];
