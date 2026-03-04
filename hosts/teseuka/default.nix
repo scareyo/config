@@ -51,6 +51,9 @@
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
+  # Enable XDG Portal
+  xdg.portal.enable = true;
+
   # Enable sound.
   services.pipewire = {
     enable = true;
