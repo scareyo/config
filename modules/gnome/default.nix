@@ -20,7 +20,6 @@
       enable = true;
       extensions = with pkgs; [
         { package = gnomeExtensions.dash-to-dock; }
-        { package = gnomeExtensions.nothing-to-say; }
         { package = gnomeExtensions.user-themes; }
       ];
     };
