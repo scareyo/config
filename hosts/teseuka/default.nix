@@ -1,33 +1,26 @@
 # Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# your system. Help is available in the configuration.nix(5) man page, on
+# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 { pkgs, self, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  imports = [
+    ./disk.nix
+    ./hardware-configuration.nix
+  ];
 
   system.configurationRevision = toString (self.shortRev or self.dirtyShortRev or "unknown");
 
-  virtualisation.libvirtd.enable = true;
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
-  # Boot
-  boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
+  # Use latest kernel.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
-    initrd.kernelModules = [ "amdgpu" ];
-    
-    kernelPackages = pkgs.linuxPackages_latest;
-  };
-
-
-  networking.hostName = "teseuka"; # Define your hostname.
+  # Load amdgpu at stage 1
+  hardware.amdgpu.initrd.enable = true;
 
   # Drives
   fileSystems."/data" = {
@@ -42,28 +35,11 @@
     dates = "07:00 UTC";
   };
 
-  # Enable networking
-  networking.networkmanager.enable = true;
+  # Set hostname
+  networking.hostName = "teseuka";
 
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [
-      80    # HTTP
-      8080  # HTTP
-      47984 # Wolf (HTTPS)
-      47989 # Wolf (HTTP)
-      48010 # Wolf (RTSP)
-      50042 # Omni (HTTP)
-    ];
-    allowedUDPPorts = [
-      67    # DHCP
-      69    # TFTP
-      4011  # DHCP
-      47999 # Wolf (Control)
-      48100 # Wolf (Video)
-      48200 # Wolf (Audio)
-    ];
-  };
+  # Configure network connections interactively with nmcli or nmtui.
+  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -71,133 +47,56 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
-
-  # Tablet
-  hardware.opentabletdriver.enable = true;
-
-  hardware.graphics = {
-    enable = true;
-  };
-
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
-  xdg.portal.enable = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    xkb.layout = "us";
-    xkb.variant = "";
-  };
-
-  services.input-remapper.enable = true;
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
+  # Enable sound.
   services.pipewire = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
     pulse.enable = true;
   };
-
-  services.flatpak.enable = true;
-
-  services.ollama.enable = true;
-  services.ollama.package = pkgs.ollama-rocm;
-
-  services.meshcentral.enable = true;
-
-  # Games On Whales
-  virtualisation = {
-    containers.enable = true;
-    docker.enable = true;
-
-    oci-containers.backend = "docker";
-
-    oci-containers.containers = {
-      wolf = {
-        image = "ghcr.io/games-on-whales/wolf:stable";
-        environment = {
-          XDG_RUNTIME_DIR = "/tmp/sockets";
-          HOST_APPS_STATE_FOLDER = "/etc/wolf";
-        };
-        volumes = [
-          "/etc/wolf/:/etc/wolf"
-          "/tmp/sockets:/tmp/sockets:rw"
-          "/var/run/docker.sock:/var/run/docker.sock:rw"
-          "/dev/:/dev/:rw"
-          "/run/udev:/run/udev:rw"
-        ];
-        extraOptions = [
-          "--device-cgroup-rule" "c 13:* rmw"
-        ];
-        devices = [
-          "/dev/dri"
-          "/dev/uinput"
-          "/dev/uhid"
-        ];
-        networks = [ "host" ];
-      };
-    };
-  };
-
-  programs.zsh.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.scarey = {
     isNormalUser = true;
     description = "Samuel Carey";
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" "dialout" "docker" ];
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
   };
 
-  # Allow unfree packages
+  programs.zsh.enable = true;
+
+  # Nix Settings
   nixpkgs.config.allowUnfree = true;
 
-  nixpkgs = {
-    overlays = [
-      (final: prev: import ../../pkgs final.pkgs)
-    ];
-  };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    usbutils
-    vim
-    docker-compose  
+  nix.settings.experimental-features = [
+    "flakes"
+    "nix-command"
   ];
 
-  programs.steam.enable = true;
-  
-  programs.appimage = {
-    enable = true;
-    binfmt = true;
-  };
+  # List packages installed in system profile.
+  environment.systemPackages = with pkgs; [
+    vim
+  ];
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
-
+  # This option defines the first version of NixOS you have installed on this particular machine,
+  # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
+  #
+  # Most users should NEVER change this value after the initial install, for any reason,
+  # even if you've upgraded your system to a new NixOS release.
+  #
+  # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
+  # so changing it will NOT upgrade your system - see https://nixos.org/manual/nixos/stable/#sec-upgrading for how
+  # to actually do that.
+  #
+  # This value being lower than the current NixOS release does NOT mean your system is
+  # out of date, out of support, or vulnerable.
+  #
+  # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
+  # and migrated your data accordingly.
+  #
+  # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
+  system.stateVersion = "25.11"; # Did you read the comment?
 }
+
