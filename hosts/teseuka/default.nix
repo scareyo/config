@@ -41,6 +41,9 @@
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
 
+  # Enable nftables
+  networking.nftables.enable = true;
+
   # Set your time zone.
   time.timeZone = "America/New_York";
 
@@ -53,6 +56,9 @@
 
   # Enable XDG Portal
   xdg.portal.enable = true;
+
+  # Enable Input Remapper
+  services.input-remapper.enable = true;
 
   # Enable sound.
   services.pipewire = {
@@ -81,7 +87,11 @@
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     vim
+    wl-clipboard
   ];
+
+  # Enable Waydroid
+  virtualisation.waydroid.enable = true;
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

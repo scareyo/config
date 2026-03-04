@@ -9,9 +9,6 @@
   home.homeDirectory = "/home/scarey";
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [
-    "dotnet-runtime-7.0.20"
-  ];
 
   home.packages = with pkgs; [
     kubectl
@@ -24,6 +21,7 @@
     runelite
     vintagestory
     vlc
+
     (vesktop.overrideAttrs (finalAttrs: previousAttrs: {
       src = fetchFromGitHub {
         owner = "scareyo";
@@ -95,7 +93,6 @@
     ghostty.enable = true;
     gpg.enable = true;
     gpg.ssh.enable = true;
-    kitty.enable = true;
     librewolf.enable = true;
 
     nvim = {
