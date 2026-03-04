@@ -7,6 +7,9 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    disko.url = "github:nix-community/disko/latest";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     ghostty.url = "github:ghostty-org/ghostty";
@@ -17,7 +20,7 @@
     nur.url = "github:nix-community/NUR";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, flake-parts, ghostty, nixvim, nur }:
+  outputs = inputs@{ self, nixpkgs, home-manager, disko, flake-parts, ghostty, nixvim, nur }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       flake = {
         homeConfigurations = {
