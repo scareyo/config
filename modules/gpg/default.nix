@@ -4,8 +4,8 @@ let
   cfg = config.scarey.home;
 
   scareyGpg = pkgs.fetchurl {
-    url = "https://scarey.me/scarey.gpg";
-    sha256 = "1waqh8slipq31vfxzg2lawbbrxqnzdiyrz6hrg137i6nlvn48925";
+    url = "https://github.com/scareyo.gpg";
+    hash = "sha256-uT+IS0fh4DCFdhWZq+2UFtkkhwYpvCS6b6cTIbxp2Ng=";
   };
 in
 {
