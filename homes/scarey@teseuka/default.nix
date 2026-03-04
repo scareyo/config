@@ -24,19 +24,18 @@
     runelite
     vintagestory
     vlc
-
     (vesktop.overrideAttrs (finalAttrs: previousAttrs: {
       src = fetchFromGitHub {
-        owner = "tuxinal";
-        repo = "Vesktop";
-        rev = "main";
-        hash = "sha256-7u3kmpgCWCj+0sSxCg8cylulWVv8oAW6H5jy8f4o+tQ=";
+        owner = "scareyo";
+        repo = "vesktop";
+        rev = "v1.6.5";
+        hash = "sha256-Og3Xoeugxcn1k1D370KZIx3l6Ui05SrDL0oSnyDwun8=";
       };
       pnpmDeps = fetchPnpmDeps {
         inherit (finalAttrs) pname version src patches;
         pnpm = pnpm_10;
         fetcherVersion = 2;
-        hash = "sha256-TDgg9bDuRoTt/QaN+zF8W1ip3vzte203+kgBHX1LJlI=";
+        hash = "sha256-C3mM3cluLB8bB8sRFQjF3NDjgZ+R9HcNRCdLNqT0ujk=";
       };
       buildInputs = previousAttrs.buildInputs ++ [
         libx11.dev
