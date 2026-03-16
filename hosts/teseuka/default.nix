@@ -90,8 +90,6 @@
     wl-clipboard
   ];
 
-  # Enable Waydroid
-  virtualisation.waydroid.enable = true;
   # Enable Docker
   virtualisation.docker.enable = true;
 
