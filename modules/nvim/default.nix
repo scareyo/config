@@ -45,7 +45,7 @@ in
       autoCmd = import ./autocmds.nix;
       keymaps = import ./keymaps.nix;
       opts = import ./options.nix;
-      plugins = import ./plugins.nix;
+      plugins = import ./plugins.nix { inherit pkgs; };
 
       userCommands = {
         TabClose = {

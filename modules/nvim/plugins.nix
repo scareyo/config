@@ -1,3 +1,5 @@
+{ pkgs }:
+
 {
   bufferline = {
     enable = true;
@@ -46,6 +48,10 @@
     enable = true;
     servers = {
       ccls.enable = true;
+      expert = {
+        enable = true;
+        package = pkgs.beamPackages.expert;
+      };
       gopls.enable = true;
       lua_ls = {
         enable = true;
