@@ -71,7 +71,7 @@
     isNormalUser = true;
     description = "Samuel Carey";
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" ];
   };
 
   programs.zsh.enable = true;
@@ -92,6 +92,8 @@
 
   # Enable Waydroid
   virtualisation.waydroid.enable = true;
+  # Enable Docker
+  virtualisation.docker.enable = true;
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
