@@ -29,6 +29,7 @@ in
   config = lib.mkIf config.scarey.home.nvim.enable {
     home.packages = with pkgs; [
       ripgrep
+      tree-sitter
 
       (lib.mkIf cfg.neovide.enable neovide)
     ];
