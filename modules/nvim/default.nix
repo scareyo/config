@@ -48,6 +48,10 @@ in
       opts = import ./options.nix;
       plugins = import ./plugins.nix { inherit pkgs; };
 
+      extraPlugins = [
+        pkgs.vimPlugins.plenary-nvim
+      ];
+
       userCommands = {
         TabClose = {
           command.__raw = ''
