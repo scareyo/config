@@ -23,6 +23,11 @@
       overlays = [
         inputs.nur.overlays.default
         (final: prev: import ../pkgs final.pkgs)
+        (final: prev: {
+          direnv = prev.direnv.overrideAttrs (old: {
+            doCheck = false;
+          });
+        })
       ];
     };
 

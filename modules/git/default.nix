@@ -22,6 +22,7 @@
     programs.git = {
       enable = true;
       signing = {
+        format = "openpgp";
         key = null;
         signByDefault = true;
         gpgPath = lib.mkIf (config.scarey.home.git.gpgPath != null) config.scarey.home.git.gpgPath;
