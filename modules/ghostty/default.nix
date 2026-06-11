@@ -6,7 +6,7 @@
   };
   
   config = lib.mkIf config.scarey.home.ghostty.enable {
-    home.packages = [
+    home.packages = lib.mkIf pkgs.stdenv.isLinux [
       inputs.ghostty.packages.${pkgs.stdenv.system}.default
     ];
 

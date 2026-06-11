@@ -11,8 +11,6 @@
   nixpkgs.config.allowUnfree = true;
     
   home.packages = with pkgs; [
-    discord
-    openscad
     yubikey-manager
   ];
       
@@ -37,6 +35,7 @@
 
     firefox.enable = true;
     fonts.enable = true;
+    ghostty.enable = true;
     nvim.enable = true;
     zsh.enable = true;
   };
