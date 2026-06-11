@@ -66,6 +66,7 @@
         installRustc = true;
         installCargo = true;
       };
+      zls.enable = true;
     };
   };
 
