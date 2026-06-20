@@ -3,6 +3,7 @@
 {
   imports = [
     ./auto-upgrade
+    ./brave
     ./firefox
     ./fonts
     ./git
