@@ -32,8 +32,8 @@
       pnpmDeps = fetchPnpmDeps {
         inherit (finalAttrs) pname version src patches;
         pnpm = pnpm_10;
-        fetcherVersion = 2;
-        hash = "sha256-C3mM3cluLB8bB8sRFQjF3NDjgZ+R9HcNRCdLNqT0ujk=";
+        fetcherVersion = 3;
+        hash = "sha256-zS1RakezlU03KGeGP5vu+ywyic8afEfh5D8GGlo+FtE=";
       };
       buildInputs = previousAttrs.buildInputs ++ [
         libx11.dev
