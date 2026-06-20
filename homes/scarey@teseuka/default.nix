@@ -94,7 +94,6 @@
     ghostty.enable = true;
     gpg.enable = true;
     gpg.ssh.enable = true;
-    librewolf.enable = true;
 
     nvim = {
       enable = true;

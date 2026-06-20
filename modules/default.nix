@@ -11,7 +11,6 @@
     ./gnome
     ./gpg
     ./kitty
-    ./librewolf
     ./nvim
     ./zed
     ./zsh
