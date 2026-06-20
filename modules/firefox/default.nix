@@ -17,6 +17,9 @@
     programs.firefox = {
       enable = true;
       package = lib.mkIf pkgs.stdenv.isDarwin null;
+
+      configPath = ".mozilla/firefox";
+
       profiles.scarey = {
         isDefault = true;
         bookmarks = {};
