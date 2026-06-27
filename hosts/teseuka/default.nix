@@ -44,6 +44,17 @@
   # Enable nftables
   networking.nftables.enable = true;
 
+  # Open ports
+  networking.firewall = {
+    allowedTCPPorts = [
+      8080    # HTTP
+    ];
+    allowedUDPPorts = [
+      67      # DHCP
+      69      # TFTP
+    ];
+  };
+
   # Set your time zone.
   time.timeZone = "America/New_York";
 
@@ -65,6 +76,8 @@
     enable = true;
     pulse.enable = true;
   };
+
+  services.meshcentral.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.scarey = {
@@ -92,6 +105,11 @@
 
   # Enable Docker
   virtualisation.docker.enable = true;
+
+  # Enable virtual machines
+  virtualisation.libvirtd.enable = true;
+
+  programs.virt-manager.enable = true;
 
   programs.appimage = {
     enable = true;
