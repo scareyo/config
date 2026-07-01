@@ -35,6 +35,16 @@
         fetcherVersion = 3;
         hash = "sha256-zS1RakezlU03KGeGP5vu+ywyic8afEfh5D8GGlo+FtE=";
       };
+      # FIXME: nativeBuildInputs can be removed once pnpm_10 change is in nixos-unstable
+      nativeBuildInputs = [
+        nodejs
+        pnpmConfigHook
+        pnpm_10
+        jq
+        autoPatchelfHook
+        copyDesktopItems
+        makeWrapper
+      ];
       buildInputs = previousAttrs.buildInputs ++ [
         libx11.dev
         libxcb.dev
