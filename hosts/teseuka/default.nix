@@ -52,6 +52,7 @@
     allowedUDPPorts = [
       67      # DHCP
       69      # TFTP
+      4011    # DHCP
     ];
   };
 
