@@ -28,15 +28,6 @@
           multi-account-containers
           ublock-origin
         ];
-        userChrome = lib.mkIf config.scarey.home.gnome.enable ''
-          @import "${pkgs.firefox-gnome-theme}/share/firefox-gnome-theme/userChrome.css"
-        '';
-        userContent = lib.mkIf config.scarey.home.gnome.enable ''
-          @import "${pkgs.firefox-gnome-theme}/share/firefox-gnome-theme/userContent.css"
-        '';
-        extraConfig = lib.mkIf config.scarey.home.gnome.enable ''
-          @import "${pkgs.firefox-gnome-theme}/share/firefox-gnome-theme/configuration/user.js"
-        '';
       };
     };
   };
