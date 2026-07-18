@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
@@ -21,57 +21,8 @@
     runelite
     vintagestory
     vlc
-
-    (vesktop.overrideAttrs (finalAttrs: previousAttrs: {
-      src = fetchFromGitHub {
-        owner = "scareyo";
-        repo = "vesktop";
-        rev = "v1.6.5";
-        hash = "sha256-Og3Xoeugxcn1k1D370KZIx3l6Ui05SrDL0oSnyDwun8=";
-      };
-      pnpmDeps = fetchPnpmDeps {
-        inherit (finalAttrs) pname version src patches;
-        pnpm = pnpm_10;
-        fetcherVersion = 3;
-        hash = "sha256-zS1RakezlU03KGeGP5vu+ywyic8afEfh5D8GGlo+FtE=";
-      };
-      # FIXME: nativeBuildInputs can be removed once pnpm_10 change is in nixos-unstable
-      nativeBuildInputs = [
-        nodejs
-        pnpmConfigHook
-        pnpm_10
-        jq
-        autoPatchelfHook
-        copyDesktopItems
-        makeWrapper
-      ];
-      buildInputs = previousAttrs.buildInputs ++ [
-        libx11.dev
-        libxcb.dev
-        libxkbcommon.dev
-        libxtst
-      ];
-      desktopItems = lib.optional stdenv.hostPlatform.isLinux (makeDesktopItem {
-        name = "dev.vencord.Vesktop";
-        desktopName = "Vesktop";
-        exec = "vesktop %U";
-        icon = "vesktop";
-        startupWMClass = "vesktop";
-        genericName = "Internet Messenger";
-        startupNotify = false;
-        keywords = [
-          "discord"
-          "vencord"
-          "electron"
-          "chat"
-        ];
-        categories = [
-          "Network"
-          "InstantMessaging"
-          "Chat"
-        ];
-      });
-    }))
+    
+    inputs.vesktop.packages.x86_64-linux.default
   ];
 
   scarey.home = {

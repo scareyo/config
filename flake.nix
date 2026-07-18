@@ -18,9 +18,12 @@
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
 
     nur.url = "github:nix-community/NUR";
+
+    vesktop.url = "github:scareyo/vesktop";
+    vesktop.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, disko, flake-parts, ghostty, nixvim, nur }:
+  outputs = inputs@{ self, nixpkgs, home-manager, disko, flake-parts, ghostty, nixvim, nur, vesktop }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       flake = {
         homeConfigurations = {
