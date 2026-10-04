@@ -2,7 +2,7 @@ name: ❄️ Update
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 6 * * *'
+    - cron: '0 6 * * 4'
 permissions:
   contents: write
   pull-requests: write
