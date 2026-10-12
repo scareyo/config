@@ -16,7 +16,7 @@
 
     programs.chromium = {
       enable = true;
-      package = if pkgs.stdenv.isDarwin then null else pkgs.brave;
+      package = if pkgs.stdenv.hostPlatform.isDarwin then null else pkgs.brave;
       extensions = [
         "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
         "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin

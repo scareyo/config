@@ -16,7 +16,7 @@
 
     programs.firefox = {
       enable = true;
-      package = lib.mkIf pkgs.stdenv.isDarwin null;
+      package = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin null;
 
       configPath = ".mozilla/firefox";
 
