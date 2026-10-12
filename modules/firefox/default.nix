@@ -18,8 +18,6 @@
       enable = true;
       package = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin null;
 
-      configPath = ".mozilla/firefox";
-
       profiles.scarey = {
         isDefault = true;
         bookmarks = {};
