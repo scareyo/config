@@ -17,6 +17,7 @@
     programs.firefox = {
       enable = true;
       package = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin null;
+      configPath = lib.mkIf pkgs.stdenv.hostPlatform.isLinux "${config.xdg.configHome}/mozilla/firefox";
 
       profiles.scarey = {
         isDefault = true;
