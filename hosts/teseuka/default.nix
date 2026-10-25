@@ -47,12 +47,13 @@
   # Open ports
   networking.firewall = {
     allowedTCPPorts = [
-      8080    # HTTP
+      8080
+      50084   # Talos Booter
     ];
     allowedUDPPorts = [
       67      # DHCP
       69      # TFTP
-      4011    # DHCP
+      4011    # ProxyDHCP
     ];
   };
 
