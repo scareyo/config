@@ -15,7 +15,8 @@
       enable = true;
       nixpkgs.source = inputs.nixpkgs;
 
-      colorschemes.tokyonight.enable = true;
+      colorschemes.github-theme.enable = true;
+      colorscheme = "github_dark_default";
 
       autoCmd = import ./_autocmds.nix;
       keymaps = import ./_keymaps.nix;
