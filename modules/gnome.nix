@@ -1,21 +1,18 @@
-{ config, lib, pkgs, ... }:
-
 {
-  options = with lib; {
-    scarey.home.gnome.enable = mkEnableOption "Enable GNOME configuration";
-    scarey.home.gnome.pinned = mkOption {
-      type = types.listOf types.str;
-      description = "Applications to pin to dash";
-      default = [];
-    };
+  flake.modules.nixos.gnome = {
+    services.displayManager.gdm.enable = true;
+    services.desktopManager.gnome.enable = true;
+
+    # Enable XDG Portal
+    xdg.portal.enable = true;
   };
-  
-  config = lib.mkIf config.scarey.home.gnome.enable {
+
+  flake.modules.homeManager.gnome = { pkgs, ... }: {
     home.packages = with pkgs; [
       gnome-tweaks
       rewaita
     ];
-    
+
     programs.gnome-shell = {
       enable = true;
       extensions = with pkgs; [
@@ -36,9 +33,6 @@
       };
       "org/gnome/mutter" = {
         edge-tiling = true;
-      };
-      "org/gnome/shell" = lib.mkIf ((builtins.length config.scarey.home.gnome.pinned) > 0) {
-        favorite-apps = config.scarey.home.gnome.pinned;
       };
       "org/gnome/shell/extensions/user-theme" = {
         name = "rewaita";

@@ -1,42 +1,17 @@
-{ config, inputs, lib, pkgs, ... }:
+{ inputs, ... }:
 
-let
-  cfg = config.scarey.home.nvim;
-  tomlFormat = pkgs.formats.toml{};
-in
 {
-  imports = [
-    inputs.nixvim.homeModules.nixvim
+  flake.modules.homeManager.nvim = { pkgs, ... }: {
+    imports = [
+      inputs.nixvim.homeModules.nixvim
 
-    #./plugins/just.nix
-  ];
+      #./_plugins/just.nix
+    ];
 
-  options = with lib; {
-    scarey.home.nvim.enable = mkEnableOption "Enable neovim configuration";
-    scarey.home.nvim.neovide.enable = mkEnableOption "Enable neovide";
-    scarey.home.nvim.neovide.settings = mkOption {
-      type = tomlFormat.type;
-      default = {
-        fork = true;
-        font.normal = [ "MesloLGS Nerd Font" ];
-        font.size = 12;
-        maximized = false;
-        tabs = false;
-      };
-    };
-  };
-  
-  config = lib.mkIf config.scarey.home.nvim.enable {
     home.packages = with pkgs; [
       ripgrep
       tree-sitter
-
-      (lib.mkIf cfg.neovide.enable neovide)
     ];
-
-    xdg.configFile."neovide/config.toml" = {
-      source = tomlFormat.generate "neovide-config" cfg.neovide.settings;
-    };
 
     programs.nixvim = {
       enable = true;
@@ -44,10 +19,10 @@ in
 
       colorschemes.tokyonight.enable = true;
 
-      autoCmd = import ./autocmds.nix;
-      keymaps = import ./keymaps.nix;
-      opts = import ./options.nix;
-      plugins = import ./plugins.nix { inherit pkgs; };
+      autoCmd = import ./_autocmds.nix;
+      keymaps = import ./_keymaps.nix;
+      opts = import ./_options.nix;
+      plugins = import ./_plugins.nix { inherit pkgs; };
 
       extraPlugins = [
         pkgs.vimPlugins.plenary-nvim
@@ -68,10 +43,6 @@ in
             end
           '';
         };
-      };
-
-      globals = lib.mkIf cfg.neovide.enable {
-        neovide_transparency = 0.95;
       };
 
       diagnostic.settings = {

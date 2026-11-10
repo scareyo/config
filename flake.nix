@@ -12,6 +12,8 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    import-tree.url = "github:vic/import-tree";
+
     ghostty.url = "github:ghostty-org/ghostty";
 
     nixvim.url = "github:nix-community/nixvim";
@@ -23,45 +25,5 @@
     vesktop.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, disko, flake-parts, ghostty, nixvim, nur, vesktop }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      flake = {
-        homeConfigurations = {
-          "scarey@teseuka" = home-manager.lib.homeManagerConfiguration {
-            modules = [ (./. + "/homes/scarey@teseuka") ];
-            pkgs = nixpkgs.legacyPackages.x86_64-linux;
-            extraSpecialArgs = { inherit inputs; };
-          };
-          "scarey@vegapunk" = home-manager.lib.homeManagerConfiguration {
-            modules = [ (./. + "/homes/scarey@vegapunk") ];
-            pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-            extraSpecialArgs = { inherit inputs; };
-          };
-          "work" = home-manager.lib.homeManagerConfiguration {
-            modules = [ (./. + "/homes/work") ];
-            pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-            extraSpecialArgs = { inherit inputs; };
-          };
-        };
-        nixosConfigurations."teseuka" = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [ ./hosts/teseuka ];
-          specialArgs = { inherit self; };
-        };
-      };
-
-      systems = [
-        "x86_64-linux"
-        "aarch64-darwin"
-      ];
-
-      perSystem = { pkgs, ... }: {
-        devShells.default = pkgs.mkShell {
-          packages = with pkgs; [
-            git-crypt
-            just
-          ];
-        };
-      };
-    };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }

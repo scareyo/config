@@ -1,10 +1,4 @@
-{ self, ... }:
-
 {
-  imports = [
-    self.inputs.disko.nixosModules.disko
-  ];
-
   disko.devices.disk.main = {
     type = "disk";
     device = "/dev/disk/by-id/nvme-ADATA_SX8200PNP_2J3420170472";

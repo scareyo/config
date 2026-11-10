@@ -1,11 +1,9 @@
-{ config, lib, ... }:
-
 {
-  options = with lib; {
-    scarey.home.zsh.enable = mkEnableOption "Enable zsh configuration";
+  flake.modules.nixos.zsh = {
+    programs.zsh.enable = true;
   };
-  
-  config = lib.mkIf config.scarey.home.zsh.enable {
+
+  flake.modules.homeManager.zsh = {
     programs.direnv = {
       enable = true;
       enableZshIntegration = true;

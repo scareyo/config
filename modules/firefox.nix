@@ -1,12 +1,5 @@
-{ config, lib, pkgs, ... }:
-
 {
-  options = with lib; {
-    scarey.home.firefox.enable = mkEnableOption "Enable firefox configuration";
-  };
-  
-  config = lib.mkIf config.scarey.home.firefox.enable {
-
+  flake.modules.homeManager.firefox = { config, lib, pkgs, ... }: {
     launchd.agents."me.scarey.config" = {
       enable = true;
       config = {

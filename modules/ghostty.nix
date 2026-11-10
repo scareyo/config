@@ -1,11 +1,7 @@
-{ config, inputs, lib, pkgs, ... }:
+{ inputs, ... }:
 
 {
-  options = with lib; {
-    scarey.home.ghostty.enable = mkEnableOption "Enable ghostty configuration";
-  };
-  
-  config = lib.mkIf config.scarey.home.ghostty.enable {
+  flake.modules.homeManager.ghostty = { lib, pkgs, ... }: {
     home.packages = lib.mkIf pkgs.stdenv.hostPlatform.isLinux [
       inputs.ghostty.packages.${pkgs.stdenv.system}.default
     ];
