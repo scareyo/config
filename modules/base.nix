@@ -1,4 +1,4 @@
-{ inputs, self, ... }:
+{ inputs, ... }:
 
 {
   flake.modules.homeManager.base = { pkgs, ... }: {
@@ -8,7 +8,6 @@
       config.allowUnfree = true;
       overlays = [
         inputs.nur.overlays.default
-        self.overlays.default
       ];
     };
 

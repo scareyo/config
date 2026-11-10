@@ -4,8 +4,6 @@
   flake.modules.homeManager.nvim = { pkgs, ... }: {
     imports = [
       inputs.nixvim.homeModules.nixvim
-
-      #./_plugins/just.nix
     ];
 
     home.packages = with pkgs; [

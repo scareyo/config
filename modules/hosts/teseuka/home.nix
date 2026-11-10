@@ -14,7 +14,6 @@
       git
       gnome
       gpg
-      neovide
       nvim
       zsh
     ];
