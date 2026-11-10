@@ -2,7 +2,7 @@ default:
   just --list
 
 init:
-  nix run home-manager/master -- init --switch
+  home-manager switch --flake .
 
 hm config='':
   home-manager switch --flake .{{ if config != '' { "#" + config } else { "" } }}

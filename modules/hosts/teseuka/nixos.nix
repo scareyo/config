@@ -2,7 +2,6 @@
 
 {
   flake.nixosConfigurations.teseuka = inputs.nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
     modules = with config.flake.modules.nixos; [
       teseuka
       gnome
