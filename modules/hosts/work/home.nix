@@ -15,16 +15,16 @@
     ];
   };
 
-  flake.modules.homeManager.work = { lib, pkgs, ... }:
+  flake.modules.homeManager.work = { config, lib, pkgs, ... }:
     let
       secrets = lib.importJSON ./_secrets.json;
     in {
       home.username = secrets.username;
       home.homeDirectory = "/Users/${secrets.username}";
 
-      home.sessionVariables = {
-        PATH = "$PATH:/Users/mca4114/.aspire/bin";
-      };
+      home.sessionPath = [
+        "${config.home.homeDirectory}/.aspire/bin"
+      ];
 
       home.packages = with pkgs; [
         awscli2

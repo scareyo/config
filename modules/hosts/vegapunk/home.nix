@@ -21,6 +21,7 @@
     home.homeDirectory = "/Users/scarey";
 
     home.packages = with pkgs; [
+      claude-code
       yubikey-manager
     ];
 
