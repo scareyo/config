@@ -13,10 +13,17 @@
     ];
   };
 
-  flake.modules.homeManager.work = { config, lib, pkgs, ... }:
+  flake.modules.homeManager.work =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       secrets = lib.importJSON ./_secrets.json;
-    in {
+    in
+    {
       home.username = secrets.username;
       home.homeDirectory = "/Users/${secrets.username}";
 
@@ -31,10 +38,13 @@
         kubernetes-helm
         nuget
 
-        (with dotnetCorePackages; combinePackages [
-          sdk_10_0
-          sdk_8_0
-        ])
+        (
+          with dotnetCorePackages;
+          combinePackages [
+            sdk_10_0
+            sdk_8_0
+          ]
+        )
 
         (writeShellApplication {
           name = "eks-update-kubeconfig";

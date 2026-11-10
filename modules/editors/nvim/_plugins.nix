@@ -81,7 +81,7 @@
     enable = true;
     mockDevIcons = true;
     modules = {
-      icons = {};
+      icons = { };
       sessions = {
         autoread = true;
         hooks.post.read.__raw = ''

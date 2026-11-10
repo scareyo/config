@@ -1,5 +1,11 @@
 {
-  flake.modules.homeManager.gpg = { config, lib, pkgs, ... }:
+  flake.modules.homeManager.gpg =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       scareyGpg = pkgs.fetchurl {
         url = "https://github.com/scareyo.gpg";

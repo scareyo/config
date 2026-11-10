@@ -1,4 +1,9 @@
-{ config, inputs, self, ... }:
+{
+  config,
+  inputs,
+  self,
+  ...
+}:
 
 {
   flake.nixosConfigurations.teseuka = inputs.nixpkgs.lib.nixosSystem {
@@ -54,12 +59,12 @@
     networking.firewall = {
       allowedTCPPorts = [
         8080
-        50084   # Talos Booter
+        50084 # Talos Booter
       ];
       allowedUDPPorts = [
-        67      # DHCP
-        69      # TFTP
-        4011    # ProxyDHCP
+        67 # DHCP
+        69 # TFTP
+        4011 # ProxyDHCP
       ];
     };
 
@@ -85,7 +90,10 @@
       isNormalUser = true;
       description = "Samuel Carey";
       shell = pkgs.zsh;
-      extraGroups = [ "wheel" "docker" ];
+      extraGroups = [
+        "wheel"
+        "docker"
+      ];
     };
 
     # Nix Settings

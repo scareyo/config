@@ -1,26 +1,38 @@
 {
-  flake.modules.homeManager.firefox = { config, lib, pkgs, ... }: {
-    launchd.agents."me.scarey.config" = {
-      enable = true;
-      config = {
-        ProgramArguments = [ "launchctl" "setenv" "MOZ_LEGACY_PROFILES" "1" ];
+  flake.modules.homeManager.firefox =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
+    {
+      launchd.agents."me.scarey.config" = {
+        enable = true;
+        config = {
+          ProgramArguments = [
+            "launchctl"
+            "setenv"
+            "MOZ_LEGACY_PROFILES"
+            "1"
+          ];
+        };
+      };
+
+      programs.firefox = {
+        enable = true;
+        package = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin null;
+        configPath = lib.mkIf pkgs.stdenv.hostPlatform.isLinux "${config.xdg.configHome}/mozilla/firefox";
+
+        profiles.scarey = {
+          isDefault = true;
+          bookmarks = { };
+          extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
+            bitwarden
+            multi-account-containers
+            ublock-origin
+          ];
+        };
       };
     };
-
-    programs.firefox = {
-      enable = true;
-      package = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin null;
-      configPath = lib.mkIf pkgs.stdenv.hostPlatform.isLinux "${config.xdg.configHome}/mozilla/firefox";
-
-      profiles.scarey = {
-        isDefault = true;
-        bookmarks = {};
-        extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
-          bitwarden
-          multi-account-containers
-          ublock-origin
-        ];
-      };
-    };
-  };
 }
