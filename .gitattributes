@@ -1,4 +1,4 @@
-modules/zsh/config/p10k.zsh linguist-generated
+modules/shell/zsh/config/p10k.zsh linguist-generated
 
 # Encrypted files
 modules/hosts/work/_secrets.json filter=git-crypt diff=git-crypt

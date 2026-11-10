@@ -45,7 +45,11 @@ every `.nix` file under `modules/` is a [flake-parts](https://flake.parts) modul
 loaded automatically with [import-tree](https://github.com/vic/import-tree).
 Paths containing `/_` are skipped, so helper files are prefixed with `_`.
 
-- `modules/<feature>.nix` defines `flake.modules.homeManager.<feature>` and/or
+- `modules/flake/` holds flake plumbing: flake-parts setup, option declarations
+  and the dev shell.
+- `modules/<category>/<feature>.nix` (`browsers`, `desktop`, `editors`, `shell`,
+  `system`) defines `flake.modules.homeManager.<feature>` and/or
   `flake.modules.nixos.<feature>`. Importing a feature enables it.
+  `modules/base.nix` is shared by every home.
 - `modules/hosts/<host>/` defines each host's own module and its
   `homeConfigurations` / `nixosConfigurations` entry, listing the features it uses.
