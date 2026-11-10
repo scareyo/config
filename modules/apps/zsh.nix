@@ -10,13 +10,18 @@
       silent = true;
       nix-direnv.enable = true;
     };
+
+    programs.starship = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
     programs.zsh = {
       enable = true;
 
       antidote = {
         enable = true;
         plugins = [
-          "romkatv/powerlevel10k"
           "zsh-users/zsh-autosuggestions"
           "zsh-users/zsh-history-substring-search"
           "zsh-users/zsh-syntax-highlighting"
@@ -28,7 +33,6 @@
       };
 
       initContent = ''
-        source ${./config/p10k.zsh}
         export KEYTIMEOUT=1
         export HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
         export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=""
