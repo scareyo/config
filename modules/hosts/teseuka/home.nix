@@ -1,11 +1,9 @@
 { config, inputs, ... }:
 
 {
-  flake.homeConfigurations."scarey@teseuka" = inputs.home-manager.lib.homeManagerConfiguration {
-    pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+  configurations.home."scarey@teseuka" = {
+    system = "x86_64-linux";
     modules = with config.flake.modules.homeManager; [
-      config.flake.modules.homeManager."scarey@teseuka"
-      base
       auto-upgrade
       brave
       firefox

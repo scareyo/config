@@ -1,11 +1,9 @@
-{ config, inputs, ... }:
+{ config, ... }:
 
 {
-  flake.homeConfigurations.work = inputs.home-manager.lib.homeManagerConfiguration {
-    pkgs = inputs.nixpkgs.legacyPackages.aarch64-darwin;
+  configurations.home.work = {
+    system = "aarch64-darwin";
     modules = with config.flake.modules.homeManager; [
-      config.flake.modules.homeManager.work
-      base
       firefox
       fonts
       git

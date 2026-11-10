@@ -51,5 +51,14 @@ Paths containing `/_` are skipped, so helper files are prefixed with `_`.
   `system`) defines `flake.modules.homeManager.<feature>` and/or
   `flake.modules.nixos.<feature>`. Importing a feature enables it.
   `modules/base.nix` is shared by every home.
-- `modules/hosts/<host>/` defines each host's own module and its
-  `homeConfigurations` / `nixosConfigurations` entry, listing the features it uses.
+- `modules/hosts/<host>/` defines each host's own module
+  (`flake.modules.homeManager.<name>`) and declares the configuration:
+  ```nix
+  configurations.home."scarey@vegapunk" = {
+    system = "aarch64-darwin";
+    modules = with config.flake.modules.homeManager; [ firefox git zsh ];
+  };
+  ```
+  `modules/flake/home-configurations.nix` builds `homeConfigurations.<name>` from
+  this, always importing the host's own module and `base`. teseuka's
+  `nixosConfigurations` entry is defined directly in `hosts/teseuka/nixos.nix`.

@@ -1,11 +1,9 @@
-{ config, inputs, ... }:
+{ config, ... }:
 
 {
-  flake.homeConfigurations."scarey@vegapunk" = inputs.home-manager.lib.homeManagerConfiguration {
-    pkgs = inputs.nixpkgs.legacyPackages.aarch64-darwin;
+  configurations.home."scarey@vegapunk" = {
+    system = "aarch64-darwin";
     modules = with config.flake.modules.homeManager; [
-      config.flake.modules.homeManager."scarey@vegapunk"
-      base
       firefox
       fonts
       ghostty
